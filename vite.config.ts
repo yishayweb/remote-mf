@@ -4,6 +4,7 @@ import { federation } from "@module-federation/vite";
 
 // https://vite.dev/config/
 export default defineConfig(() => ({
+  base: "/",
   server: {
     port: 4001,
     origin: "http://localhost:4001",
@@ -17,6 +18,7 @@ export default defineConfig(() => ({
     federation({
       name: "remote",
       filename: "remoteEntry.js",
+      publicPath: "auto",
       exposes: {
         "./Button": "./src/components/Button",
       },
