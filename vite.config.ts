@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 import { federation } from "@module-federation/vite";
 
 // https://vite.dev/config/
-export default defineConfig(() => ({
-  base: "/",
+export default defineConfig(({ mode }) => ({
+  // base: "/",
   server: {
     port: 4001,
     origin: "http://localhost:4001",
@@ -13,12 +13,13 @@ export default defineConfig(() => ({
     port: 4001,
   },
   // base: mode === "development" ? "/" : "http://localhost:4001/",
+  base: mode === "development" ? "/" : "https://remote-mf-tau.vercel.app/",
   plugins: [
     react(),
     federation({
       name: "remote",
       filename: "remoteEntry.js",
-      publicPath: "auto",
+      // publicPath: "auto",
       exposes: {
         "./Button": "./src/components/Button",
       },
